@@ -1,0 +1,20 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = __importDefault(require("express"));
+const customerController_1 = require("./customerController");
+const userController_1 = require("./userController");
+const roleController_1 = require("./roleController");
+const route = express_1.default.Router();
+route.get('/users', userController_1.userController.getAll);
+route.get('/users/:id', userController_1.userController.getUserById);
+route.post('/add', userController_1.userController.createUser);
+route.put('/update/:id', userController_1.userController.updateUser);
+route.delete('/delete/:id', userController_1.userController.deleteUser);
+route.get('/customers', customerController_1.customerController.getCustomers);
+route.get('/customers/:name', customerController_1.customerController.getCustomerIdByName);
+route.get('/roles', roleController_1.roleController.getRoles);
+route.get('/roles/:name', roleController_1.roleController.getRoleKeyByName);
+exports.default = route;
